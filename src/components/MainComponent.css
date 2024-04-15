@@ -4,16 +4,23 @@
     box-sizing: border-box;
 }
 
+.df {
+    display: flex;
+
+}
+
+.container {
+    padding: 25px;
+
+}
 @font-face {
     font-family: 'MyriadPro'; /* Replace 'YourFontName' with the desired font family name */
-    src: url('../assets/font/8145.otf') format('opentype'); /* Replace 'YourFontFile' with the name of your OTF font file */
-    font-weight: normal;
+    src: url('../assets/font/8143.otf') format('opentype'); /* Replace 'YourFontFile' with the name of your OTF font file */
 }
 
 
 .sidebar__home {
     display: flex;
-    flex-wrap: wrap;
 }
 
 .sidebar {
@@ -36,4 +43,136 @@
     line-height: normal;
     letter-spacing: normal;
     color: #000;
+}
+
+.main .main__ul {
+    /*display: flex;*/
+}
+
+
+.main .main__ul li{
+    list-style: none;
+    color: #1253a2;
+    font-family: MyriadPro;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 25px 20px;
+    cursor: pointer;
+}
+
+.main .main__ul li:first-child {
+    padding-left: 0;
+}
+
+.main .main__ul li:last-child {
+    padding-right: 0;
+}
+
+.main_ul__li__active {
+    color: #000 !important;
+}
+
+.main__ul__settings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1317px;
+}
+
+.settings {
+    cursor: pointer;
+    padding: 0;
+}
+
+.popup {
+    position: absolute;
+    top: 115px; /* регулируйте это значение в зависимости от вашего дизайна */
+    right: 40px;
+    width: 200px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Убедитесь, что z-index выше, чем у других элементов на странице */
+}
+
+.popup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popup li {
+    padding: 10px;
+    cursor: pointer;
+    color: #161616;
+    font-family: MyriadPro;
+    font-size: 14px;
+}
+
+.popup li:hover {
+    background-color: #f0f0f0;
+}
+
+.popup li img {
+    margin-left: auto;
+    position: absolute;
+    right: 10px;
+    width: 13px;
+    height: 13px;
+}
+
+
+.settings {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.settings img {
+    width: 20px;
+    height: 20px;
+}
+
+
+.create__table button{
+    width: 146px;
+    height: 35px;
+    padding: 10px 15px 10px 10px;
+    border-radius: 5px;
+    background-color: #2f8cff;
+    border: none;
+    font-family: MyriadPro;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create__table img {
+    margin-right: 4px;
+}
+
+.create__table {
+    width: 100%;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    margin: 25px 0 25px 0;
+    padding: 20px 20px 20px 25px;
+}
+
+.table {
+    width: 100%;
+    height: 100%;
+    margin: 25px 0 175px 0;
+    padding: 9px 1px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.07);
+    background-color: #fff;
 }
