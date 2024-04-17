@@ -1,17 +1,15 @@
 <template>
   <div class="table">
     <table>
-      <thead>
-      <tr>
-        <th class="id__and__draggable">Номер</th>
-        <th class="action">Действие</th>
-        <th class="unit-name">Наименование еденицы</th>
-        <th class="price">Цена</th>
-        <th class="quantity">Кол-во</th>
-        <th class="product-name">Название товара</th>
-        <th class="total">Итого</th>
+      <thead >
+      <tr >
+        <th class="id__and__draggable" v-for="(i, index) in columns" :key="index" draggable="true" @dragstart="startDragHeader(index)"
+            @dragover="overDragHeader($event)" @drop="handleDropHeader(index)">
+          {{ i.title }}
+        </th>
       </tr>
       </thead>
+
       <tbody v-for="(item, index) in items" :key="index" draggable="true"
              @dragstart="startDrag(index)" @dragover="overDrag($event)" @drop="handleDrop(index)"
              :class="{ 'dragged' : index === draggedItem }">
@@ -19,26 +17,25 @@
         <td class="sequence"><img src="../assets/menu-burger.svg" alt=""> {{ item.id }}</td>
         <td class="action" @click="openPopup($event)">
           <img src="../assets/three-dots.svg" alt="">
-          <!-- Popup -->
           <div v-if="popupVisible" class="popup">
             <p>Удалить</p>
             <button @click="deleteItem(index)">Удалить</button>
           </div>
         </td>
         <td class="unit-name">
-          <input type="text" v-model="item.unitName"  @input="item.edited = true"  >
+          <input type="text" v-model="item.unitName" @input="item.edited = true">
         </td>
         <td class="price">
-          <input type="number" v-model="item.price"   @input="item.edited = true">
+          <input type="number" v-model="item.price" @input="item.edited = true">
         </td>
         <td class="quantity">
-          <input type="number" v-model="item.count"  @input="item.edited = true" >
+          <input type="number" v-model="item.count" @input="item.edited = true">
         </td>
         <td class="product-name">
-          <input type="text" v-model="item.productName"  @input="item.edited = true" >
+          <input type="text" v-model="item.productName" @input="item.edited = true">
         </td>
         <td class="total">
-          <input type="number" v-model="item.total"   @input="item.edited = true" >
+          <input type="number" v-model="item.total" @input="item.edited = true">
         </td>
         <button v-if="item.edited" @click="saveDataToServer(item)" class="popup-button">Сохранить</button>
       </tr>
@@ -53,6 +50,15 @@ export default {
   data() {
     return {
       fak: {id: 1, name: "fak"},
+      columns: [
+        {id: 1, title: 'Номер'},
+        {id: 2, title: 'Действие'},
+        {id: 3, title: 'Наименование еденицы'},
+        {id: 4, title: 'Цена'},
+        {id: 5, title: 'Кол-во'},
+        {id: 6, title: 'Название товара'},
+        {id: 7, title: 'Итого'},
+      ],
       items: [
         {
           id: 1,
@@ -86,8 +92,9 @@ export default {
         },
       ],
       draggedItem: null,
+      draggedItem2: null,
       popupVisible: false,
-      popupPosition: { top: "0", left: "0" },
+      popupPosition: {top: "0", left: "0"},
     };
   },
   methods: {
@@ -135,7 +142,32 @@ export default {
       console.log(popupLeft);
       this.popupVisible = !this.popupVisible;
     },
+    startDragHeader(index) {
+      this.draggedItem2 = index;
+    },
+    overDragHeader(event) {
+      event.preventDefault();
+    },
+    handleDropHeader(index) {
+      let droppedItem = this.columns.splice(this.draggedItem2, 1)[0];
+      this.columns.splice(index, 0, droppedItem);
 
+      this.items.forEach(item => {
+        // Get the data of the dropped column
+        let temp = item[droppedItem.id];
+
+        // Remove the data of the dropped column from the item
+        delete item[droppedItem.id];
+
+        // Insert the data of the dropped column at the new index
+        item[droppedItem.id] = temp;
+      });
+
+      this.draggedItem2 = null;
+
+
+      console.log("but handle drop: " + index);
+    },
     saveDataToServer(item) {
       const url = 'https://example/api/'; // Замените на нужный URL вашего API
 
@@ -181,7 +213,10 @@ export default {
 
 
 <style scoped>
+.df {
+  display: flex;
 
+}
 
 .table {
   width: 100%;
@@ -201,22 +236,56 @@ table {
 
 th {
   border: 1px solid #eeeff1;
-  resize: horizontal; /* Разрешаем изменение размера только по горизонтали */
-  overflow: auto; /* Добавляем полосы прокрутки при изменении размера столбца */
+  resize: horizontal;
+  overflow: auto;
+}
+
+::-webkit-resizer {
+  display: none;
 }
 
 th, td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #dddddd;
+  font-family: MyriadPro;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+input {
+  border: 2px solid #cccccc;
+  padding: 10px 15px;
+  border-radius: 5px;
+  height: 35px;
+  outline: none;
+  font-family: MyriadPro;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Убираем пробел между внутренней и внешней стрелками */
+}
+
+/* Для Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 th.id__and__draggable, th.option {
-  width: 30px; /* Adjust width as needed */
+  width: 30px;
 }
 
 td.action {
-  width: 80px; /* Adjust width as needed */
+  width: 80px;
 }
 
 td.total {
