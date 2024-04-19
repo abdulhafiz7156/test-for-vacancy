@@ -21,11 +21,6 @@
             </ul>
           </div>
         </div>
-        <div class="create__table">
-          <div class="create__table__div">
-            <button type="button" onclick=""><img src="../assets/plus.svg" alt=""> Добавить строку</button>
-          </div>
-        </div>
         <TableMain></TableMain>
       </div>
     </div>
@@ -40,7 +35,7 @@ export default {
   components: {TableMain},
   data() {
     return {
-      popupVisible: false
+      popupVisible: false,
     }
   },
   methods: {

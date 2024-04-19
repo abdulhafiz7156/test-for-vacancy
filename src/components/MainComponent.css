@@ -134,38 +134,6 @@
 }
 
 
-.create__table button{
-    width: 146px;
-    height: 35px;
-    padding: 10px 15px 10px 10px;
-    border-radius: 5px;
-    background-color: #2f8cff;
-    border: none;
-    font-family: MyriadPro;
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.create__table img {
-    margin-right: 4px;
-}
-
-.create__table {
-    width: 100%;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.07);
-    border-radius: 10px;
-    margin: 25px 0 25px 0;
-    padding: 20px 20px 20px 25px;
-}
 
 .table {
     width: 100%;
