@@ -15,7 +15,7 @@
     "@syncfusion/ej2-vue-grids": "^25.1.40",
     "@syncfusion/ej2-vue-navigations": "^25.1.40",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13",
+    "vue": "^3.4.23",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
