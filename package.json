@@ -12,7 +12,7 @@
     "@syncfusion/ej2-vue-buttons": "^25.1.39",
     "@syncfusion/ej2-vue-calendars": "^25.1.40",
     "@syncfusion/ej2-vue-dropdowns": "^25.1.40",
-    "@syncfusion/ej2-vue-grids": "^25.1.40",
+    "@syncfusion/ej2-vue-grids": "^25.1.41",
     "@syncfusion/ej2-vue-navigations": "^25.1.40",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
